@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+
+  state = {
+    availableProducts: 7,
+    quantity: 6,
+  }
+
+  handleRemoveFromCart() {
+    this.setState({
+      quantity: this.state.quantity - 1
+    });
+  }
+
+  handleAddCart() {
+    this.setState({
+      quantity: this.state.quantity + 1
+    });
+  }
+
+  render() {
+
+    return (
+      <div>
+        <button disabled={this.state.quantity === 0 ? true : false} onClick={this.handleRemoveFromCart.bind(this)}> - </button>
+        <span> {this.state.quantity} </span>
+        <button disabled={this.state.quantity === this.state.availableProducts ? true : false} onClick={this.handleAddCart.bind(this)}> + </button>
+
+      </div>
+    );
+  }
 }
-
 export default App;
