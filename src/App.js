@@ -21,6 +21,17 @@ class App extends React.Component {
     });
   }
 
+
+  handleBuy() {
+    // console.log('its bought');
+    this.setState({
+
+      availableProducts: this.state.availableProducts - this.state.quantity,
+      quantity: 0
+
+    })
+
+  }
   render() {
 
     return (
@@ -28,6 +39,7 @@ class App extends React.Component {
         <button disabled={this.state.quantity === 0 ? true : false} onClick={this.handleRemoveFromCart.bind(this)}> - </button>
         <span> {this.state.quantity} </span>
         <button disabled={this.state.quantity === this.state.availableProducts ? true : false} onClick={this.handleAddCart.bind(this)}> + </button>
+        {this.state.quantity > 0 && <button onClick={this.handleBuy.bind(this)}> Buy </button>}
 
       </div>
     );
